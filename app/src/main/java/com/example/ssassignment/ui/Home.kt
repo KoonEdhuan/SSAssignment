@@ -3,6 +3,8 @@ package com.example.ssassignment.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -14,6 +16,8 @@ import com.example.ssassignment.R
 import com.example.ssassignment.adapter.MainAdapter
 import com.example.ssassignment.databinding.ActivityHomeBinding
 import com.example.ssassignment.viewmodel.MainViewModel
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class Home : AppCompatActivity() {
 
@@ -58,6 +62,21 @@ class Home : AppCompatActivity() {
             mainAdapter.setData(it)
         })
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.nav_menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.signOut -> {
+                Firebase.auth.signOut()
+                startActivity(Intent(this,MainActivity::class.java))
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setUpRecyclerView() = binding.recyclerView.apply {

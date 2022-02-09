@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ssassignment.R
 import com.example.ssassignment.ui.MainActivity
 import com.example.ssassignment.databinding.ItemLayoutBinding
 import com.example.ssassignment.db.product.Product
@@ -31,6 +32,7 @@ class MainAdapter: RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
         holder.itemView.apply {
             binding.prodName.text = currentItem.productName
             binding.prodPrice.text = currentItem.price.toString()
+            binding.prodImage.setBackgroundResource(R.drawable.ic_launcher_foreground)
             binding.btnBuy.setOnClickListener {
                 val intent = Intent(context, Payment::class.java)
                 intent.putExtra("productPrice",currentItem.price)

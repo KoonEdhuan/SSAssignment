@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         binding.googleSignInBtn.setOnClickListener {
             val intent = googleSignInClient.signInIntent
             startActivityForResult(intent, RC_SIGN_IN)
-            Toast.makeText(this,"btn clicked",Toast.LENGTH_SHORT).show()
         }
 
     }
